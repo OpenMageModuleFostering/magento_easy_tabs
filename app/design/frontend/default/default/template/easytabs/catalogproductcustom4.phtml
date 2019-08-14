@@ -1,9 +1,16 @@
-<?php
-if(Mage::getStoreConfig('easy_tabs/custom/customtabid4')){
-	$method = 'get' . ucfirst(Mage::getStoreConfig('easy_tabs/custom/customtabid4'));
-	$content = nl2br($this->getProduct()->$method());
-	if(!empty($content)){
-		echo '<div class="product-specs">'.$content.'</div>';
+<?php 
+$_helper = $this->helper('catalog/output');
+$attrCode = Mage::getStoreConfig('easy_tabs/custom/customtabid4');
+if($attrCode){
+	$product = $this->getProduct();
+	$attribute = $product->getResource()->getAttribute($attrCode);
+	if ($attribute) {
+		$content = $attribute->getFrontend()->getValue($product);
+		if(!empty($content)){
+			echo '<div class="product-specs">'
+				. $_helper->productAttribute($this->getProduct(), $content, $attrCode)
+				. '</div>';
+		}
 	}
 }
 ?>
