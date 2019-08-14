@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+    <name>magento_easy_tabs</name>
+    <version>1.0</version>
+    <stability>stable</stability>
+    <license uri="http://creativecommons.org/licenses/by/3.0/">Creative Commons License</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Magento Easy Tabs Community Module</summary>
+    <description>This small extension will help to add informational tabs on product page. Installation and configuration will take approximately  5 minutes.
+1.Install extension using magento connect.
+2.Log out from admin and login again.
+3.Navigation to System &gt; Configuration &gt; Templates-Master &gt; EasyTabs and enable extension for any store you need.
+4. Enjoy!</description>
+    <notes>Magento Easy Tabs  Community Module</notes>
+    <authors><author><name>TemplatesMaster</name><user>auto-converted</user><email>support@templates-master.com</email></author></authors>
+    <date>2010-02-10</date>
+    <time>14:04:15</time>
+    <contents><target name="mageskin"><dir name="frontend"><dir name="default"><dir name="default"><dir name="css"><file name="easytabs.css" hash="0737634b9619e21681cfbc15461b56bc"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="default"><dir name="default"><dir name="layout"><file name="easytabs.xml" hash="7be0f9e0aecb4c61b4ac64d40028c99b"/></dir><dir name="template"><dir name="easytabs"><file name="catalogproductcms.phtml" hash="48473fb7abc94ef48d3acef0d0954be2"/><file name="catalogproductcms1.phtml" hash="c5c479c9e61d07eb8ce0838b16788047"/><file name="catalogproductcms2.phtml" hash="5a2205f2503c515768d6c87ba3dc8b2f"/><file name="catalogproductcms3.phtml" hash="48f3e1462773ac60a4726082d64101e6"/><file name="catalogproductcms4.phtml" hash="651909fdd43ed4efad97751780b7719f"/><file name="catalogproductcustom.phtml" hash="4aec12543339fb2f481ae3953b8915dd"/><file name="catalogproductcustom1.phtml" hash="367f4e668f802825b9eb378d95e1da1a"/><file name="catalogproductcustom2.phtml" hash="c7960d7f420f29939c7a23d31712f3da"/><file name="catalogproductcustom3.phtml" hash="2aff7f48b222a0321c5dc4cc270da80f"/><file name="catalogproductcustom4.phtml" hash="5d72fff75ac92cf871322c7aa055ced3"/><file name="catalogproductoption.phtml" hash="d054bce0a37c9e3ca6213f9b9211b5c4"/><file name="catalogproductrelated.phtml" hash="feee59638d5b9e7d3856808db85fcc6a"/><file name="catalogproductreview.phtml" hash="d8f2181ce5429b76666b5162582c0110"/><file name="catalogproducttags.phtml" hash="a81b4d1cc086209c273ff3e215326bff"/><file name="catalogproductview.phtml" hash="a9c25383ef204a574375e27036c4c50e"/><file name="tabs.phtml" hash="b04ce0155d2c91b7d7b5a10f0d27823a"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="TM_EasyTabs.xml" hash="ddaad9776e5841d8d9a29d769c1cdb72"/></dir></target><target name="magecommunity"><dir name="TM"><dir name="EasyTabs"><dir name="etc"><file name="config.xml" hash="387a88042292a637a490c61e49b155e3"/><file name="system.xml" hash="4c9e7e13f9198e2672843d5457d1c2dd"/></dir><dir name="Helper"><file name="Data.php" hash="164bf2329ec0c7fe31fb3598daa2ec8c"/></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies/>
+</package>

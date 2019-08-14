@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/magento_easy_tabs",
+    "type": "magento-module",
+    "license": "Creative-Commons-License",
+    "homepage": "",
+    "description": "Magento Easy Tabs Community Module",
+    "authors": [
+    {
+        "name": "TemplatesMaster",
+        "email": "support@templates-master.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
