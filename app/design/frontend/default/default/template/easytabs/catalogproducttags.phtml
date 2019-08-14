@@ -18,29 +18,33 @@
  * versions in the future. If you wish to customize Magento for your
  * needs please refer to http://www.magentocommerce.com for more information.
  *
- * @category   design_default
- * @package    Mage
- * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
- * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+<div class="box-collateral box-tags">
+    <?php echo $this->getChildHtml('list_before')?>
     <?php if( $this->getCount() ): ?>
-    <h5><?php echo $this->__('Other people marked this product with these tags:') ?></h5>
-        <ul class="tags-list">
-            <?php $_iterator = 0; ?>
-            <?php foreach( $this->getTags() as $_tag ): ?>
-                <li<?php if( 1 == ++$_iterator && $this->getCount() != 1 ): ?> class="first"<?php elseif($_iterator == $this->getCount()): ?> class="last"<?php endif; ?>><a href="<?php echo $_tag->getTaggedProductsUrl() ?>"><?php echo $this->htmlEscape($_tag->getName()) ?></a> (<?php echo $_tag->getPopularity() ?>)</li>
-            <?php endforeach; ?>
-        </ul>
+    <h3><?php echo $this->__('Other people marked this product with these tags:') ?></h3>
+    <ul class="product-tags">
+        <?php $_iterator = 0; ?>
+        <?php foreach( $this->getTags() as $_tag ): ?>
+            <li<?php if( 1 == ++$_iterator && $this->getCount() != 1 ): ?> class="first"<?php elseif($_iterator == $this->getCount()): ?> class="last"<?php endif; ?>><a href="<?php echo $_tag->getTaggedProductsUrl() ?>"><?php echo $this->htmlEscape($_tag->getName()) ?></a> (<?php echo $_tag->getPopularity() ?>)</li>
+        <?php endforeach; ?>
+    </ul>
     <?php endif; ?>
-<h5><?php echo $this->__('Add Your Tags:') ?></h5>
-<div class="add-tag-box">
-    <form id="addTagForm" action="<?php echo $this->getFormAction(); ?>"  method="get">
-        <div class="input-box">
-            <input type="text" class="input-text required-entry" name="productTagName" />
+    <form id="addTagForm" action="<?php echo $this->getFormAction(); ?>" method="get">
+        <div class="form-add">
+            <label for="productTagName"><?php echo $this->__('Add Your Tags:') ?></label>
+            <div class="input-box">
+                <input type="text" class="input-text required-entry" name="productTagName" id="productTagName" />
+            </div>
+            <button type="button" title="<?php echo $this->__('Add Tags') ?>" class="button" onclick="submitTagForm()"><span><span><?php echo $this->__('Add Tags') ?></span></span></button>
         </div>
-        <fieldset><button type="button" class="form-button-alt" onclick="submitTagForm()"><span><?php echo $this->__('Add Tags') ?></span></button></fieldset>
     </form>
+    <p class="note"><?php echo $this->__("Use spaces to separate tags. Use single quotes (') for phrases.") ?></p>
     <script type="text/javascript">
     //<![CDATA[
         var addTagFormJs = new VarienForm('addTagForm');
@@ -51,6 +55,4 @@
         }
     //]]>
     </script>
-    <div class="clear"></div>
-    <small><?php echo $this->__("Use spaces to separate tags. Use single quotes (') for phrases.") ?></small>
 </div>

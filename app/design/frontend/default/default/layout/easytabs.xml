@@ -12,7 +12,6 @@
         <reference name="product.info">
                 <action method="unsetChild" ifconfig="easy_tabs/general/additionaltabbed"><name>additional</name></action>                    
                 <action method="unsetChild" ifconfig="easy_tabs/general/upsellproductstabbed"><name>upsell_products</name></action>
-				<!-- <action method="setTemplate"  ifconfig="easy_tabs/general/descriptiontabbed"><template>easytabs/catalogproductview.phtml</template></action> -->
 				<action method="setTemplate"><template>easytabs/catalogproductview.phtml</template></action>				
     	</reference>
         
@@ -23,11 +22,9 @@
         <reference name="product.info.additional">
                 <action method="unsetChild" ifconfig="easy_tabs/general/tagstabbed"><name>product_tag_list</name></action>
 				<block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs">
-				
                     <action method="setTemplate" ifconfig="easy_tabs/general/enabled"><template>easytabs/tabs.phtml</template></action>
-					<action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/descriptiontabbed"><alias>description_tabbed</alias><title>Product Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
-					<action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/optiontabbed"><alias>option_tabbed</alias><title>Product's Attributes</title><block>catalog/product_view</block><template>easytabs/catalogproductoption.phtml</template></action>
-                    <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/additionaltabbed"><alias>additional_tabbed</alias><title>Additional Information</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
+					<action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/descriptiontabbed"><alias>description_tabbed</alias><title>Product Description</title><block>catalog/product_view_description</block><template>easytabs/description.phtml</template></action>
+                    <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/additionaltabbed"><alias>additional_tabbed</alias><title>Additional Information</title><block>catalog/product_view_attributes</block><template>easytabs/attributes.phtml</template></action>
 					<action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/upsellproductstabbed"><alias>upsell_products_tabbed</alias><title>We Also Recommend</title><block>catalog/product_list_upsell</block><template>catalog/product/list/upsell.phtml</template></action>                   
                     <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/relatedtabbed"><alias>related_tabbed</alias><title>Related Products</title><block>catalog/product_list_related</block><template>easytabs/catalogproductrelated.phtml</template></action>               
 		            <action method="addTab" translate="title" module="tag" ifconfig="easy_tabs/general/tagstabbed"><alias>tags_tabbed</alias><title>Product Tags</title><block>tag/product_list</block><template>easytabs/catalogproducttags.phtml</template></action>
