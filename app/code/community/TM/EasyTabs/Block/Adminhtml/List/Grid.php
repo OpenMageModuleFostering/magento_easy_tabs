@@ -76,7 +76,7 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
             'width'     => '80px',
             'index'     => 'status',
             'type'      => 'options',
-            'options'   => Mage::getSingleton('easytabs/config_status')->getOptionHash(),
+            'options'   => Mage::getSingleton('easytabs/config_status')->toOptionHash(),
         ));
         if (!Mage::app()->isSingleStoreMode()) {
 //            $this->addColumn('website_id', array(
@@ -140,7 +140,7 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
              'confirm'  => Mage::helper('easytabs')->__('Are you sure?')
         ));
 
-        $statuses = Mage::getSingleton('easytabs/config_status')->getOptionArray();
+        $statuses = Mage::getSingleton('easytabs/config_status')->toOptionArray();
 
         array_unshift($statuses, array('label'=>'', 'value'=>''));
 //        Zend_Debug::dump($statuses);die;

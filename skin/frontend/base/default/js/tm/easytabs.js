@@ -8,7 +8,9 @@ EasyTabs.prototype = {
     config: {
         tabs     : '.easytabs-anchor',
         container: '#easytabs',
-        trackHashValue: true
+        trackHashValue: true,
+        scrollSpeed: 0.5,
+        scrollOffset: -5
     },
     container : false,
 
@@ -42,13 +44,41 @@ EasyTabs.prototype = {
             }.bind(this));
         }
 
+        Event.observe(window, "hashchange", function() {
+            var href = window.location.hash;
+            if (href.length <= 1) {
+                var first = this.container.down(this.config.tabs);
+                href = first.href || first.readAttribute('data-href');
+            } else {
+                if (-1 === href.indexOf('#product_tabs_')) {
+                    return;
+                }
+            }
+            this.deactivate();
+            this.activate(this.getTabByHref(href));
+        }.bind(this));
+
         if (!this.activeTabs.length) {
             var first = this.container.down(this.config.tabs);
-            this.activate(this.getTabByHref(first.href));
+            if ('undefined' !== typeof first) {
+                this.activate(this.getTabByHref(first.href || first.readAttribute('data-href')));
+            }
         }
 
         $$(this.config.tabs).each(function(el ,i) {
             el.observe('click', this.onclick.bind(this, el));
+
+            var id = $(el).getAttribute('data-href');
+            if (!id) {
+                return;
+            }
+            $$(id + '_contents .pages a').each(function(_el){
+                if (-1 == _el.href.indexOf("#")
+                    && -1 !== _el.href.indexOf(window.location.host)) {
+
+                    _el.href = _el.href + id;
+                }
+            });
         }.bind(this));
     },
 
@@ -57,7 +87,7 @@ EasyTabs.prototype = {
      * @param {Boolean} scroll  lag to indicate that page should be scrolled to the tab
      * @return {String|false}   Activated tab of false if tab wasn't found
      */
-    activate: function(tab, scroll) {
+    activate: function(tab, scroll, animate) {
         var content = $(this.tpl.content.replace(this.tpl.tab, tab));
         if (!content) {
             return false;
@@ -78,7 +108,10 @@ EasyTabs.prototype = {
         }
 
         var href = this.tpl.href.replace(this.tpl.tab, tab),
-            tabs = this.container.select(this.config.tabs + '[href="' + href + '"]');
+            tabs = this.container.select(
+                this.config.tabs + '[href="' + href + '"]',
+                this.config.tabs + '[data-href="' + href + '"]'
+            );
 
         tabs.each(function(a) {
             a.addClassName('active');
@@ -91,7 +124,10 @@ EasyTabs.prototype = {
                 return el.getStyle('display') !== 'none';
             });
             if (visibleTab) {
-                visibleTab.scrollTo();
+                Effect.ScrollTo(visibleTab, {
+                    duration: animate ? this.config.scrollSpeed : 0,
+                    offset: this.config.scrollOffset
+                });
             }
         }
 
@@ -136,7 +172,10 @@ EasyTabs.prototype = {
         content.hide();
 
         var href = this.tpl.href.replace(this.tpl.tab, tab),
-            tabs = this.container.select(this.config.tabs + '[href="' + href + '"]');
+            tabs = this.container.select(
+                this.config.tabs + '[href="' + href + '"]',
+                this.config.tabs + '[data-href="' + href + '"]'
+            );
 
         tabs.each(function(a) {
             a.removeClassName('active');
@@ -159,7 +198,7 @@ EasyTabs.prototype = {
      * @param {String} tab      Tab to activate
      * @param {Boolean} scroll  Flag to indicate that page should be scrolled to the tab
      */
-    onclick: function(el, e, tab, scroll) {
+    onclick: function(el, e, tab, scroll, animate) {
         var isAccordion = false,
             accordionTrigger = $$('.easytabs-a-accordion').first();
         if (accordionTrigger) {
@@ -167,17 +206,18 @@ EasyTabs.prototype = {
             isAccordion = (accordionTrigger.getStyle('display') !== 'none');
         }
 
-        tab    = tab || this.getTabByHref(el.href);
+        tab    = tab || this.getTabByHref(el.href || el.readAttribute('data-href'));
         scroll = scroll || el.hasClassName('easytabs-scroll');
+        animate = animate || el.hasClassName('easytabs-animate');
         if (isAccordion) {
             if (el.hasClassName('active')) {
                 this.deactivate(tab);
             } else {
-                this.activate(tab, scroll);
+                this.activate(tab, scroll, animate);
             }
         } else {
             this.deactivate();
-            this.activate(tab, scroll);
+            this.activate(tab, scroll, animate);
         }
     },
 
